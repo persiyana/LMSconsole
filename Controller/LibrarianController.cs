@@ -1,11 +1,4 @@
-﻿using AutoMapper;
-using EntityFrameworkPlayground.Database;
-using EntityFrameworkPlayground.Database.Entities;
-using Microsoft.EntityFrameworkCore;
-using LMSconsole.Models;
-using Microsoft.AspNetCore.Mvc;
-using LMSconsole.Database;
-using LMSconsole.Models;
+﻿using LMSconsole.Database;
 using LMSconsole.Database.Entities;
 using LMSconsole.Validator;
 
@@ -43,7 +36,7 @@ namespace LMSconsole.Controller
                 Console.WriteLine(ex.Message);
             }
         }
-        public bool Login (string uname, string pass)
+        public bool Login(string uname, string pass)
         {
             try
             {
@@ -59,7 +52,7 @@ namespace LMSconsole.Controller
                     else return false;
                 }
             }
-            catch 
+            catch
             {
                 throw;
             }

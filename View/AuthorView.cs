@@ -1,6 +1,4 @@
-﻿using System;
-using LMSconsole.Database;
-using LMSconsole.Controller;
+﻿using LMSconsole.Controller;
 namespace LMSconsole.View
 {
     public class AuthorView

@@ -1,12 +1,5 @@
-﻿using AutoMapper;
-using EntityFrameworkPlayground.Database;
-using EntityFrameworkPlayground.Database.Entities;
-using Microsoft.EntityFrameworkCore;
-using LMSconsole.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using EntityFrameworkPlayground.Database.Entities;
 using LMSconsole.Database;
-using LMSconsole.Models;
-using LMSconsole.Database.Entities;
 using LMSconsole.Validator;
 
 

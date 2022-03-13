@@ -1,12 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using LMSconsole.View;
-
-
-namespace LMSconsole.View
+﻿namespace LMSconsole.View
 {
     public class MenuView
     {
@@ -85,7 +77,7 @@ namespace LMSconsole.View
 
             }
 
-            
+
         }
     }
 }

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace LMSconsole.Database
 {
-    public class MyDbContext:DbContext
+    public class MyDbContext : DbContext
     {
         public virtual DbSet<Book> Books { get; set; }
 

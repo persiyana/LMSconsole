@@ -1,7 +1,4 @@
-﻿using System;
-using LMSconsole.Database;
-using LMSconsole.Controller;
-using LMSconsole.View;
+﻿using LMSconsole.Controller;
 
 namespace LMSconsole.View
 {

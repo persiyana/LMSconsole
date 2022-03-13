@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace LMSconsole.Validator
+﻿namespace LMSconsole.Validator
 {
     class InputValidator
     {
@@ -32,7 +26,7 @@ namespace LMSconsole.Validator
             this.Title = ft;
             this.FullName = ft;
         }
-        public InputValidator(string fname,  string pnum, string address, string email)
+        public InputValidator(string fname, string pnum, string address, string email)
         {
             this.FullName = fname;
             this.Address = address;
@@ -52,12 +46,12 @@ namespace LMSconsole.Validator
         }
         public bool ReaderAllDataValidation()
         {
-            if (PhoneValidation() && EmailValidation()&&
+            if (PhoneValidation() && EmailValidation() &&
                this.FullName != string.Empty && this.Address != string.Empty)
             {
                 return true;
             }
-            if (this.FullName == string.Empty  || this.Address == string.Empty)
+            if (this.FullName == string.Empty || this.Address == string.Empty)
             { Console.WriteLine("Please fill all the blank fields!"); }
             return false;
         }
@@ -74,7 +68,7 @@ namespace LMSconsole.Validator
         public bool LibrarianAllDataValidation()
         {
             if (AllPassValidation() && Pass1Validation() && EmailValidation() && PhoneValidation() &&
-               this.FullName != string.Empty&& this.Username != string.Empty && this.Address != string.Empty)
+               this.FullName != string.Empty && this.Username != string.Empty && this.Address != string.Empty)
             {
                 return true;
             }
