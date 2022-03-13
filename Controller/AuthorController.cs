@@ -15,47 +15,69 @@ namespace LMSconsole.Controller
     {
         public void AddAuthor(string fname, DateTime dateOfB, string nationality, bool isAlive)
         {
-            InputValidator authorV = new InputValidator(fname);
-            if (authorV.AuthorAllDataValidation())
+            try
             {
-                using (var db = new MyDbContext())
+                InputValidator authorV = new InputValidator(fname);
+                if (authorV.AuthorAllDataValidation())
                 {
-                    var author = new Author
+                    using (var db = new MyDbContext())
                     {
-                        Name = fname,
-                        DateOfBirth=dateOfB,
-                        Nationality=nationality,
-                        IsAlive=isAlive
-                    };
-                    db.Authors.Add(author);
-                    db.SaveChanges();
-                    Console.WriteLine("You have successfully added new author!");
+                        var author = new Author
+                        {
+                            Name = fname,
+                            DateOfBirth = dateOfB,
+                            Nationality = nationality,
+                            IsAlive = isAlive
+                        };
+                        db.Authors.Add(author);
+                        db.SaveChanges();
+                        Console.WriteLine("You have successfully added new author!");
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
         }
         public void AuthorList()
         {
-            using (var db = new MyDbContext())
+            try
             {
-                foreach (var item in db.Authors.ToList())
+                using (var db = new MyDbContext())
                 {
-                    Console.WriteLine($"Id: {item.AuthorId}" +
-                        $"\n  Name: {item.Name}" +
-                        $"\n  Date of birth: {item.DateOfBirth}" +
-                        $"\n  Is alive: {item.IsAlive}" +
-                        $"\n  Nationality: {item.Nationality}" +
-                        $"\n");
+                    foreach (var item in db.Authors.ToList())
+                    {
+                        Console.WriteLine($"Id: {item.AuthorId}" +
+                            $"\n  Name: {item.Name}" +
+                            $"\n  Date of birth: {item.DateOfBirth}" +
+                            $"\n  Is alive: {item.IsAlive}" +
+                            $"\n  Nationality: {item.Nationality}" +
+                            $"\n");
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
         public void AuthorListID()
         {
-            using (var db = new MyDbContext())
+            try
             {
-                foreach (var item in db.Authors.ToList())
+                using (var db = new MyDbContext())
                 {
-                    Console.WriteLine($"{item.AuthorId} - {item.Name}");
+                    foreach (var item in db.Authors.ToList())
+                    {
+                        Console.WriteLine($"{item.AuthorId} - {item.Name}");
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
     }

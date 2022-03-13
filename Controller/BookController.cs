@@ -16,50 +16,64 @@ namespace LMSconsole.Controller
     {
         public void AddBook(string title, int authorID, DateTime issuedAt, bool isAvailable)
         {
-            InputValidator bookV = new InputValidator(title);
-            if (bookV.BookAllDataValidation())
+            try
             {
-                using (var db = new MyDbContext())
+                InputValidator bookV = new InputValidator(title);
+                if (bookV.BookAllDataValidation())
                 {
-                    var book = new Book
+                    using (var db = new MyDbContext())
                     {
-                        Title= title,
-                        AuthorId= authorID,
-                        IssuedAt=issuedAt,
-                        IsAvailable=isAvailable
-                    };
-                    db.Books.Add(book);
-                    db.SaveChanges();
-                    Console.WriteLine("You have successfully added new book!");
+                        var book = new Book
+                        {
+                            Title = title,
+                            AuthorId = authorID,
+                            IssuedAt = issuedAt,
+                            IsAvailable = isAvailable
+                        };
+                        db.Books.Add(book);
+                        db.SaveChanges();
+                        Console.WriteLine("You have successfully added new book!");
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
         public void BookList()
         {
-            using (var db = new MyDbContext())
+            try
             {
-                var data = db.Books.Join(db.Authors,
-                    book=>book.Author.AuthorId,
-                    author=>author.AuthorId,
-                    (book,author)=> new
-                    {
-                        BookId=book.BookId,
-                        AuthorName=author.Name,
-                        BookTitle=book.Title,
-                        BookIssuedAt=book.IssuedAt,
-                        BookIsAvailable=book.IsAvailable
-                    }
-                    ).ToList();
-                foreach (var item in data)
+                using (var db = new MyDbContext())
                 {
-                    
-                    Console.WriteLine($"Id: {item.BookId}" +
-                        $"\n  Title: {item.BookTitle}" +
-                        $"\n  Author: {item.AuthorName}" +
-                        $"\n  Issued at: {item.BookIssuedAt}" +
-                        $"\n  Is available: {item.BookIsAvailable}" +
-                        $"\n");
+                    var data = db.Books.Join(db.Authors,
+                        book => book.Author.AuthorId,
+                        author => author.AuthorId,
+                        (book, author) => new
+                        {
+                            BookId = book.BookId,
+                            AuthorName = author.Name,
+                            BookTitle = book.Title,
+                            BookIssuedAt = book.IssuedAt,
+                            BookIsAvailable = book.IsAvailable
+                        }
+                        ).ToList();
+                    foreach (var item in data)
+                    {
+
+                        Console.WriteLine($"Id: {item.BookId}" +
+                            $"\n  Title: {item.BookTitle}" +
+                            $"\n  Author: {item.AuthorName}" +
+                            $"\n  Issued at: {item.BookIssuedAt}" +
+                            $"\n  Is available: {item.BookIsAvailable}" +
+                            $"\n");
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
     }

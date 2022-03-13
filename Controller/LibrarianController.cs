@@ -15,91 +15,126 @@ namespace LMSconsole.Controller
     {
         public void CheckIfLibrariansHaveItems()
         {
-            using (var db = new MyDbContext())
-            { 
-                var usernames=db.Librarians.Select(x => x.Username).ToList();
-                bool check = false;
-                if(usernames.Count()>0) check= true;
-                if (!check)
+            try
+            {
+                using (var db = new MyDbContext())
                 {
-                    var librarian = new Librarian
+                    var usernames = db.Librarians.Select(x => x.Username).ToList();
+                    bool check = false;
+                    if (usernames.Count() > 0) check = true;
+                    if (!check)
                     {
-                        Username = "admin",
-                        Password = "admin123",
-                        Name = "Georgi Georgiev",
-                        Address = "Sofia",
-                        PhoneNumber = "0885123695",
-                        Email = "lms_admin@gmail.com"
-                    };
-                    db.Librarians.Add(librarian);
-                    db.SaveChanges();
+                        var librarian = new Librarian
+                        {
+                            Username = "admin",
+                            Password = "admin123",
+                            Name = "Georgi Georgiev",
+                            Address = "Sofia",
+                            PhoneNumber = "0885123695",
+                            Email = "lms_admin@gmail.com"
+                        };
+                        db.Librarians.Add(librarian);
+                        db.SaveChanges();
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
         public bool Login (string uname, string pass)
         {
-            using (var db = new MyDbContext())
-            {
-                var userExists = db.Librarians.FirstOrDefault(a => a.Username.Equals(uname));
-                if (userExists != null)
-                {
-                    if (userExists.Password.Equals(pass)) 
-                        return true;
-                        else return false;
-                }
-                else return false;
-            }
-    
-        }
-        public void AddLibrarian(string uname, string pass, string passC, string fname, string address, string phoneNum, string email)
-        {
-            InputValidator librarianV = new InputValidator(uname, pass, passC, fname, address, phoneNum, email);
-            if (librarianV.LibrarianAllDataValidation())
+            try
             {
                 using (var db = new MyDbContext())
                 {
-                    var librarian = new Librarian
+                    var userExists = db.Librarians.FirstOrDefault(a => a.Username.Equals(uname));
+                    if (userExists != null)
                     {
-                        Username = uname,
-                        Password = pass,
-                        Name = fname,
-                        Address = address,
-                        PhoneNumber = phoneNum,
-                        Email = email
-                    };
-                    db.Librarians.Add(librarian);
-                    db.SaveChanges();
-                    Console.WriteLine("You have successfully added new librarian!");
+                        if (userExists.Password.Equals(pass))
+                            return true;
+                        else return false;
+                    }
+                    else return false;
                 }
+            }
+            catch 
+            {
+                throw;
+            }
+
+        }
+        public void AddLibrarian(string uname, string pass, string passC, string fname, string address, string phoneNum, string email)
+        {
+            try
+            {
+                InputValidator librarianV = new InputValidator(uname, pass, passC, fname, address, phoneNum, email);
+                if (librarianV.LibrarianAllDataValidation())
+                {
+                    using (var db = new MyDbContext())
+                    {
+                        var librarian = new Librarian
+                        {
+                            Username = uname,
+                            Password = pass,
+                            Name = fname,
+                            Address = address,
+                            PhoneNumber = phoneNum,
+                            Email = email
+                        };
+                        db.Librarians.Add(librarian);
+                        db.SaveChanges();
+                        Console.WriteLine("You have successfully added new librarian!");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
         public void LibrariansList()
         {
-            using (var db = new MyDbContext())
+            try
             {
-                foreach (var item in db.Librarians.ToList())
+                using (var db = new MyDbContext())
                 {
-                    Console.WriteLine($"Username: {item.Username}" +
-                        $"\n  Password: {item.Password}" +
-                        $"\n  Name: {item.Name}" +
-                        $"\n  Address: {item.Address}" +
-                        $"\n  Phone number: {item.PhoneNumber}" +
-                        $"\n  Email: {item.Email}" +
-                        $"\n");
+                    foreach (var item in db.Librarians.ToList())
+                    {
+                        Console.WriteLine($"Username: {item.Username}" +
+                            $"\n  Password: {item.Password}" +
+                            $"\n  Name: {item.Name}" +
+                            $"\n  Address: {item.Address}" +
+                            $"\n  Phone number: {item.PhoneNumber}" +
+                            $"\n  Email: {item.Email}" +
+                            $"\n");
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
         public void RemoveLibrarian(string uname)
         {
-            using (var db = new MyDbContext())
+            try
             {
-                var librarianR = new Librarian
+                using (var db = new MyDbContext())
                 {
-                    Username = uname
-                };
-                db.Librarians.Remove(librarianR);
-                db.SaveChanges();
-                Console.WriteLine("You have successfully removed a librarian!");
+                    var librarianR = new Librarian
+                    {
+                        Username = uname
+                    };
+                    db.Librarians.Remove(librarianR);
+                    db.SaveChanges();
+                    Console.WriteLine("You have successfully removed a librarian!");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
     }

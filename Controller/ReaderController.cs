@@ -15,39 +15,53 @@ namespace LMSconsole.Controller
     {
         public void AddReader(string fname, string address, string phoneNum, string email, bool isStud)
         {
-            InputValidator readerV = new InputValidator(fname, phoneNum, address,  email);
-            if (readerV.ReaderAllDataValidation())
+            try
             {
-                using (var db = new MyDbContext())
+                InputValidator readerV = new InputValidator(fname, phoneNum, address, email);
+                if (readerV.ReaderAllDataValidation())
                 {
-                    var reader = new Reader
+                    using (var db = new MyDbContext())
                     {
-                        Name = fname,
-                        Address = address,
-                        PhoneNumber = phoneNum,
-                        Email = email,
-                        IsStudent = isStud
-                    };
-                    db.Readers.Add(reader);
-                    db.SaveChanges();
-                    Console.WriteLine("You have successfully added new reader!");
+                        var reader = new Reader
+                        {
+                            Name = fname,
+                            Address = address,
+                            PhoneNumber = phoneNum,
+                            Email = email,
+                            IsStudent = isStud
+                        };
+                        db.Readers.Add(reader);
+                        db.SaveChanges();
+                        Console.WriteLine("You have successfully added new reader!");
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
         public void ReadersList()
         {
-            using (var db = new MyDbContext())
+            try
             {
-                foreach (var item in db.Readers.ToList())
+                using (var db = new MyDbContext())
                 {
-                    Console.WriteLine($"Id: {item.ReaderId}" +
-                        $"\n  Name: {item.Name}" +
-                        $"\n  Address: {item.Address}" +
-                        $"\n  Phone number: {item.PhoneNumber}" +
-                        $"\n  Email: {item.Email}" +
-                        $"\n  Is student: {item.IsStudent}" +
-                        $"\n");
+                    foreach (var item in db.Readers.ToList())
+                    {
+                        Console.WriteLine($"Id: {item.ReaderId}" +
+                            $"\n  Name: {item.Name}" +
+                            $"\n  Address: {item.Address}" +
+                            $"\n  Phone number: {item.PhoneNumber}" +
+                            $"\n  Email: {item.Email}" +
+                            $"\n  Is student: {item.IsStudent}" +
+                            $"\n");
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
     }
