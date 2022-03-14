@@ -77,7 +77,6 @@ namespace LMSconsole.Controller
                 throw;
             }
         }
-
         public void UpdateReader(int id, string address, string pNum, string email, string isStud)
         {
             try

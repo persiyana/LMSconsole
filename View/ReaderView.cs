@@ -26,6 +26,8 @@ namespace LMSconsole.View
             catch
             {
                 Console.WriteLine("Error! New reader have NOT been added to the system!");
+                MenuView menuView = new MenuView();
+                menuView.MenuActivities();
             }
         }
         public void ReadersList()
@@ -41,6 +43,8 @@ namespace LMSconsole.View
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                MenuView menuView = new MenuView();
+                menuView.MenuActivities();
             }
         }
         public void RemoveReader()
@@ -59,9 +63,10 @@ namespace LMSconsole.View
             catch
             {
                 Console.WriteLine("Error! Reader have NOT been removed from the system!");
+                MenuView menuView = new MenuView();
+                menuView.MenuActivities();
             }
         }
-
         public void UpdateReader()
         {
             try
@@ -106,6 +111,8 @@ namespace LMSconsole.View
             catch
             {
                 Console.WriteLine("Error! Reader have NOT been updated!");
+                MenuView menuView = new MenuView();
+                menuView.MenuActivities();
             }
         }
     }

@@ -8,7 +8,7 @@ namespace LMSconsole
         {
 
             LibrarianView librarianView = new LibrarianView();
-            librarianView.CheckIfLibrariansHaveItems();
+            librarianView.CheckIfThereAreLibrarians();
             librarianView.Login();
         }
     }

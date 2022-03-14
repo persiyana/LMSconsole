@@ -6,7 +6,7 @@ namespace LMSconsole.Controller
 {
     class LibrarianController
     {
-        public void CheckIfLibrariansHaveItems()
+        public void CheckIfThereAreLibrarians()
         {
             try
             {

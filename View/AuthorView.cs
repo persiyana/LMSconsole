@@ -23,6 +23,8 @@ namespace LMSconsole.View
             catch
             {
                 Console.WriteLine("Error! New author have NOT been added to the system!");
+                MenuView menuView = new MenuView();
+                menuView.MenuActivities();
             }
         }
         public void AuthorList()
@@ -38,6 +40,8 @@ namespace LMSconsole.View
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                MenuView menuView = new MenuView();
+                menuView.MenuActivities();
             }
         }
         public void AuthorListID()
@@ -51,6 +55,8 @@ namespace LMSconsole.View
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                MenuView menuView = new MenuView();
+                menuView.MenuActivities();
             }
 
         }
@@ -70,6 +76,8 @@ namespace LMSconsole.View
             catch
             {
                 Console.WriteLine("Error! That author have NOT been updated");
+                MenuView menuView = new MenuView();
+                menuView.MenuActivities();
             }
         }
     }

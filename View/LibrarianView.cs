@@ -26,6 +26,8 @@ namespace LMSconsole.View
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                MenuView menuView = new MenuView();
+                menuView.MenuActivities();
             }
         }
         public void AddLibrarian()
@@ -54,6 +56,8 @@ namespace LMSconsole.View
             catch
             {
                 Console.WriteLine("Error! New librarian have NOT been added to the system!");
+                MenuView menuView = new MenuView();
+                menuView.MenuActivities();
             }
         }
         public void LibrariansList()
@@ -69,6 +73,8 @@ namespace LMSconsole.View
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                MenuView menuView = new MenuView();
+                menuView.MenuActivities();
             }
         }
         public void RemoveLibrarian()
@@ -92,12 +98,14 @@ namespace LMSconsole.View
             catch
             {
                 Console.WriteLine("Error! Librarian have NOT been removed from the system!");
+                MenuView menuView = new MenuView();
+                menuView.MenuActivities();
             }
         }
-        public void CheckIfLibrariansHaveItems()
+        public void CheckIfThereAreLibrarians()
         {
             LibrarianController lc = new LibrarianController();
-            lc.CheckIfLibrariansHaveItems();
+            lc.CheckIfThereAreLibrarians();
         }
         public void UpdateLibrarian()
         {
@@ -148,6 +156,8 @@ namespace LMSconsole.View
             catch
             {
                 Console.WriteLine("Error! Librarian have NOT been updated!");
+                MenuView menuView = new MenuView();
+                menuView.MenuActivities();
             }
 
         }

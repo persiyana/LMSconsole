@@ -34,6 +34,8 @@ namespace LMSconsole.View
             catch
             {
                 Console.WriteLine("Error! New book have NOT been added to the system!");
+                MenuView menuView = new MenuView();
+                menuView.MenuActivities();
             }
         }
         public void BookList()
@@ -50,6 +52,8 @@ namespace LMSconsole.View
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+                MenuView menuView = new MenuView();
+                menuView.MenuActivities();
             }
         }
         public void RemoveBook()
@@ -68,6 +72,8 @@ namespace LMSconsole.View
             catch
             {
                 Console.WriteLine("Error! Book have NOT been removed from the system!");
+                MenuView menuView = new MenuView();
+                menuView.MenuActivities();
             }
         }
     }
