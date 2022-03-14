@@ -29,9 +29,9 @@ namespace LMSconsole.Controller
                     }
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                Console.WriteLine(ex.Message);
+                throw;
             }
         }
         public void BookList()
@@ -64,9 +64,29 @@ namespace LMSconsole.Controller
                     }
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                Console.WriteLine(ex.Message);
+                throw;
+            }
+        }
+        public void RemoveBook(int bookID)
+        {
+            try
+            {
+                using (var db = new MyDbContext())
+                {
+                    var bookR = new Book
+                    {
+                        BookId = bookID
+                    };
+                    db.Books.Remove(bookR);
+                    db.SaveChanges();
+                    Console.WriteLine("You have successfully removed a book!");
+                }
+            }
+            catch
+            {
+                throw;
             }
         }
     }

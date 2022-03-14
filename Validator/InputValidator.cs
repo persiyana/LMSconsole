@@ -25,6 +25,13 @@
         {
             this.Title = ft;
             this.FullName = ft;
+            this.PhoneNum = ft;
+            this.Email = ft;
+        }
+        public InputValidator(string pas, string passC)
+        {
+            this.Password = pas;
+            this.PassConfirm = passC;
         }
         public InputValidator(string fname, string pnum, string address, string email)
         {

@@ -28,9 +28,9 @@ namespace LMSconsole.Controller
                     }
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                Console.WriteLine(ex.Message);
+                throw;
             }
 
         }
@@ -51,9 +51,9 @@ namespace LMSconsole.Controller
                     }
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                Console.WriteLine(ex.Message);
+                throw;
             }
         }
         public void AuthorListID()
@@ -68,9 +68,30 @@ namespace LMSconsole.Controller
                     }
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                Console.WriteLine(ex.Message);
+                throw;
+            }
+        }
+        public void UpdateAuthor(int id)
+        {
+            try
+            {
+                using (var db = new MyDbContext())
+                {
+                    var author = new Author()
+                    {
+                        AuthorId = id,
+                        IsAlive = false
+                    };
+                    db.Authors.Attach(author);
+                    db.Entry(author).Property(x => x.IsAlive).IsModified = true;
+                    db.SaveChanges();
+                }
+            }
+            catch
+            {
+                throw;
             }
         }
     }

@@ -51,9 +51,9 @@ namespace LMSconsole.View
                 MenuView menuView = new MenuView();
                 menuView.MenuActivities();
             }
-            catch (Exception ex)
+            catch
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine("Error! New librarian have NOT been added to the system!");
             }
         }
         public void LibrariansList()
@@ -89,15 +89,67 @@ namespace LMSconsole.View
                 MenuView menuView = new MenuView();
                 menuView.MenuActivities();
             }
-            catch (Exception ex)
+            catch
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine("Error! Librarian have NOT been removed from the system!");
             }
         }
         public void CheckIfLibrariansHaveItems()
         {
             LibrarianController lc = new LibrarianController();
             lc.CheckIfLibrariansHaveItems();
+        }
+        public void UpdateLibrarian()
+        {
+
+            try
+            {
+                Console.Write("Librarian's username: ");
+                string uname = Console.ReadLine();
+                Console.Write("What do you want to change?(address/phone-number/email/password) ");
+                string input = Console.ReadLine();
+                string address = string.Empty;
+                string pNum = string.Empty;
+                string email = string.Empty;
+                string pass = string.Empty;
+                string passC = string.Empty;
+                switch (input)
+                {
+                    case "address":
+                        Console.Write("Address: ");
+                        address = Console.ReadLine();
+                        break;
+                    case "phone-number":
+                        Console.Write("Phone number: ");
+                        pNum = Console.ReadLine();
+                        break;
+                    case "email":
+                        Console.Write("Email: ");
+                        email = Console.ReadLine();
+                        break;
+                    case "password":
+                        Console.Write("Password: ");
+                        pass = Console.ReadLine();
+                        Console.Write("Confirm password: ");
+                        passC = Console.ReadLine();
+                        break;
+                    default:
+                        Console.WriteLine("Invalid input!");
+                        break;
+                }
+
+                LibrarianController lc = new LibrarianController();
+
+                lc.UpdateLibrarian(uname, address, pNum, email, pass, passC);
+                Console.WriteLine("You have successfully updated librarian!");
+                MenuView menuView = new MenuView();
+                menuView.MenuActivities();
+            }
+            catch
+            {
+                Console.WriteLine("Error! Librarian have NOT been updated!");
+            }
+
         }
     }
 }

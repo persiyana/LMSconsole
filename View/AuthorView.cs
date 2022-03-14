@@ -20,9 +20,9 @@ namespace LMSconsole.View
                 MenuView menuView = new MenuView();
                 menuView.MenuActivities();
             }
-            catch (Exception ex)
+            catch
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine("Error! New author have NOT been added to the system!");
             }
         }
         public void AuthorList()
@@ -53,6 +53,24 @@ namespace LMSconsole.View
                 Console.WriteLine(ex.Message);
             }
 
+        }
+        public void UpdateAuthor()
+        {
+            try
+            {
+                Console.WriteLine("Warning! Authors alive status will be updated automatically to FALSE");
+                Console.Write("Author's ID:");
+                int AuthID = Convert.ToInt32(Console.ReadLine());
+                AuthorController authorController = new AuthorController();
+                authorController.UpdateAuthor(AuthID);
+                Console.WriteLine($"Author with id {AuthID} have been updated!");
+                MenuView menuView = new MenuView();
+                menuView.MenuActivities();
+            }
+            catch
+            {
+                Console.WriteLine("Error! That author have NOT been updated");
+            }
         }
     }
 }

@@ -31,9 +31,9 @@ namespace LMSconsole.Controller
                     }
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                Console.WriteLine(ex.Message);
+                throw;
             }
         }
         public bool Login(string uname, string pass)
@@ -82,9 +82,9 @@ namespace LMSconsole.Controller
                     }
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                Console.WriteLine(ex.Message);
+                throw;
             }
         }
         public void LibrariansList()
@@ -105,9 +105,9 @@ namespace LMSconsole.Controller
                     }
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                Console.WriteLine(ex.Message);
+                throw;
             }
         }
         public void RemoveLibrarian(string uname)
@@ -125,9 +125,79 @@ namespace LMSconsole.Controller
                     Console.WriteLine("You have successfully removed a librarian!");
                 }
             }
-            catch (Exception ex)
+            catch
             {
-                Console.WriteLine(ex.Message);
+                throw;
+            }
+        }
+        public void UpdateLibrarian(string uname, string address, string pNum, string email, string pass, string passC)
+        {
+            try
+            {
+                using (var db = new MyDbContext())
+                {
+                    if (address != string.Empty)
+                    {
+                        var librarian = new Librarian()
+                        {
+                            Username = uname,
+                            Address = address
+                        };
+                        db.Librarians.Attach(librarian);
+                        db.Entry(librarian).Property(x => x.Address).IsModified = true;
+                        db.SaveChanges();
+                    }
+                    else if (pNum != string.Empty)
+                    {
+                        InputValidator inputValidator = new InputValidator(pNum);
+                        if (inputValidator.PhoneValidation())
+                        {
+                            var librarian = new Librarian()
+                            {
+                                Username = uname,
+                                PhoneNumber = pNum
+                            };
+                            db.Librarians.Attach(librarian);
+                            db.Entry(librarian).Property(x => x.PhoneNumber).IsModified = true;
+                            db.SaveChanges();
+                        }
+                    }
+                    else if (email != string.Empty)
+                    {
+                        InputValidator inputValidator = new InputValidator(email);
+                        if (inputValidator.EmailValidation())
+                        {
+                            var librarian = new Librarian()
+                            {
+                                Username = uname,
+                                Email = email
+                            };
+                            db.Librarians.Attach(librarian);
+                            db.Entry(librarian).Property(x => x.Email).IsModified = true;
+                            db.SaveChanges();
+                        }
+                    }
+                    else if (pass != string.Empty)
+                    {
+                        InputValidator inputValidator = new InputValidator(pass, passC);
+                        if (inputValidator.AllPassValidation())
+                        {
+                            var librarian = new Librarian()
+                            {
+                                Username = uname,
+                                Password = pass
+                            };
+                            db.Librarians.Attach(librarian);
+                            db.Entry(librarian).Property(x => x.Password).IsModified = true;
+                            db.SaveChanges();
+                        }
+                    }
+                    else Console.WriteLine("There is nothing to update!");
+                }
+            }
+            catch
+            {
+                throw;
             }
         }
     }

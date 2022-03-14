@@ -31,9 +31,9 @@ namespace LMSconsole.View
                 MenuView menuView = new MenuView();
                 menuView.MenuActivities();
             }
-            catch (Exception ex)
+            catch
             {
-                Console.WriteLine(ex.Message);
+                Console.WriteLine("Error! New book have NOT been added to the system!");
             }
         }
         public void BookList()
@@ -50,6 +50,24 @@ namespace LMSconsole.View
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
+            }
+        }
+        public void RemoveBook()
+        {
+            try
+            {
+                Console.Write("Book's ID: ");
+                int bookID = Convert.ToInt32(Console.ReadLine());
+
+                BookController bookController = new BookController();
+                bookController.RemoveBook(bookID);
+
+                MenuView menuView = new MenuView();
+                menuView.MenuActivities();
+            }
+            catch
+            {
+                Console.WriteLine("Error! Book have NOT been removed from the system!");
             }
         }
     }

@@ -19,12 +19,17 @@
                 "   ladd - add new librarian",
                 "   lls - list of librarians",
                 "   lremove - remove librarian",
+                "   lupdate - update librarian",
                 "   radd - add new reader",
                 "   rls - list of readers",
+                "   rremove - remove reader",
+                "   rupdate - update reader",
                 "   aadd - add new author",
                 "   als - list of authors",
+                "   aupdate - make author's 'is alive' from true to false",
                 "   badd - add new book",
                 "   bls - list of books",
+                "   bremove - remove book",
                 "   END - end the program"
             };
             LibrarianView librarianView = new LibrarianView();
@@ -51,11 +56,20 @@
                     case "lremove":
                         librarianView.RemoveLibrarian();
                         break;
+                    case "lupdate":
+                        librarianView.UpdateLibrarian();
+                        break;
                     case "radd":
                         readerView.AddReader();
                         break;
                     case "rls":
                         readerView.ReadersList();
+                        break;
+                    case "rremove":
+                        readerView.RemoveReader();
+                        break;
+                    case "rupdate":
+                        readerView.UpdateReader();
                         break;
                     case "aadd":
                         authorView.AddAuthor();
@@ -63,11 +77,17 @@
                     case "als":
                         authorView.AuthorList();
                         break;
+                    case "aupdate":
+                        authorView.UpdateAuthor();
+                        break;
                     case "badd":
                         bookView.AddBook();
                         break;
                     case "bls":
                         bookView.BookList();
+                        break;
+                    case "bremove":
+                        bookView.RemoveBook();
                         break;
                     default:
                         Console.WriteLine("Invalid command");
@@ -76,8 +96,6 @@
                 }
 
             }
-
-
         }
     }
 }
