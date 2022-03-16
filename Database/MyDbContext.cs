@@ -1,5 +1,4 @@
-﻿using EntityFrameworkPlayground.Database.Entities;
-using LMSconsole.Database.Entities;
+﻿using LMSconsole.Database.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace LMSconsole.Database
@@ -33,6 +32,26 @@ namespace LMSconsole.Database
                 .HasForeignKey(a => a.AuthorId);
             });
 
+            modelBuilder.Entity<Activity>(e => e
+                .HasOne(b => b.Reader)
+                .WithMany(a => a.Activities)
+                .HasForeignKey(a => a.ReaderId)
+            );
+            modelBuilder.Entity<Activity>(e => e
+                .HasOne(b => b.Book)
+                .WithMany(a => a.Activities)
+                .HasForeignKey(a => a.BookId)
+            );
+            modelBuilder.Entity<Book>(e => e
+                .HasMany(b => b.Activities)
+                .WithOne(b => b.Book)
+                .HasForeignKey(a => a.BookId)
+            );
+            modelBuilder.Entity<Reader>(e => e
+                .HasMany(b => b.Activities)
+                .WithOne(b => b.Reader)
+                .HasForeignKey(a => a.ReaderId)
+            );
         }
     }
 }

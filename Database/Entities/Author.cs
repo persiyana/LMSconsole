@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace EntityFrameworkPlayground.Database.Entities
+namespace LMSconsole.Database.Entities
 {
     public class Author
     {
