@@ -1,5 +1,4 @@
 ﻿using LMSconsole.Controller;
-
 namespace LMSconsole.View
 {
     public class BookView
@@ -76,5 +75,102 @@ namespace LMSconsole.View
                 menuView.MenuActivities();
             }
         }
+
+
+        public void IsAvailable()
+        {
+            try
+            {
+                Console.WriteLine("List of available books:");
+                BookController bookController = new BookController();
+                bookController.IsAvailable();
+                MenuView menuView = new MenuView();
+                menuView.MenuActivities();
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                MenuView menuView = new MenuView();
+                menuView.MenuActivities();
+            }
+        }
+        public void BookListID()
+        {
+            try
+            {
+                Console.WriteLine("List of books:");
+                BookController bookCon = new BookController();
+                bookCon.BookListID();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                MenuView menuView = new MenuView();
+                menuView.MenuActivities();
+            }
+
+        }
+
+        public void UpdateBook()
+        {
+
+            try
+            {
+
+                Console.Write("Book's ID (type bls if you don't know the id): ");
+                string input = Console.ReadLine();
+                int BookID = 0;
+                if (input == "bls")
+                {
+                    BookView bookView = new BookView();
+                    bookView.BookListID();
+                    Console.Write("Book's ID: ");
+                    BookID = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("What do you want to change (title/author-id/issued-at/is-available): ");
+                    string command = Console.ReadLine();
+                    BookController bookController = new BookController();
+                    bookController.UpdateBook(BookID, command);
+                    Console.WriteLine($"Book with id {BookID} have been updated!");
+                    MenuView menuView = new MenuView();
+                    menuView.MenuActivities();
+                }
+                else if (int.TryParse(input, out int value) == true && Convert.ToInt32(input) > 0)
+                {
+                    BookID = Convert.ToInt32(input);
+                    Console.Write("What do you want to change (title/author-id/issued-at): ");
+                    string command = Console.ReadLine().ToLower();
+                    if (command == "title" || command == "author-id" || command == "issued-at")
+                    {
+                        BookController bookController = new BookController();
+                        bookController.UpdateBook(BookID, command);
+                        Console.WriteLine($"Book with id {BookID} have been updated!");
+                        MenuView menuView = new MenuView();
+                        menuView.MenuActivities();
+                    }
+                    else
+                    {
+                        Console.WriteLine("Error! Book have NOT been updated. Incorrect command");
+                    }
+
+                }
+                else
+                {
+                    Console.WriteLine("Error! Book have NOT been updated. Incorrect ID");
+                }
+
+
+            }
+            catch
+            {
+                Console.WriteLine("Error! Book have NOT been updated. Incorrect ID");
+                MenuView menuView = new MenuView();
+                menuView.MenuActivities();
+            }
+
+
+
+        }
     }
+
 }

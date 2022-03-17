@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace EntityFrameworkPlayground.Database.Entities
+namespace LMSconsole.Database.Entities
 {
     public class Book
     {
@@ -14,5 +14,7 @@ namespace EntityFrameworkPlayground.Database.Entities
 
         public bool IsAvailable { get; set; }
         public virtual Author Author { get; set; }
+
+        public virtual ICollection<Activity> Activities { get; set; }
     }
 }

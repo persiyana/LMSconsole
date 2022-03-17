@@ -1,5 +1,4 @@
 ﻿using LMSconsole.Controller;
-
 namespace LMSconsole.View
 {
     public class ReaderView
@@ -104,7 +103,7 @@ namespace LMSconsole.View
 
                 ReaderController readerController = new ReaderController();
                 readerController.UpdateReader(readID, address, pNum, email, isStud);
-                Console.WriteLine("You have successfully updated reader!");
+
                 MenuView menuView = new MenuView();
                 menuView.MenuActivities();
             }
@@ -114,6 +113,23 @@ namespace LMSconsole.View
                 MenuView menuView = new MenuView();
                 menuView.MenuActivities();
             }
+        }
+
+        public void ReaderListID()
+        {
+            try
+            {
+                Console.WriteLine("List of readers:");
+                ReaderController readerController = new ReaderController();
+                readerController.ReadersListID();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                MenuView menuView = new MenuView();
+                menuView.MenuActivities();
+            }
+
         }
     }
 }

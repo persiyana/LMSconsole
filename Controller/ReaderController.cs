@@ -93,6 +93,7 @@ namespace LMSconsole.Controller
                         db.Readers.Attach(reader);
                         db.Entry(reader).Property(x => x.Address).IsModified = true;
                         db.SaveChanges();
+                        Console.WriteLine("You have successfully updated reader!");
                     }
                     else if (pNum != string.Empty)
                     {
@@ -107,6 +108,7 @@ namespace LMSconsole.Controller
                             db.Readers.Attach(reader);
                             db.Entry(reader).Property(x => x.PhoneNumber).IsModified = true;
                             db.SaveChanges();
+                            Console.WriteLine("You have successfully updated reader!");
                         }
                     }
                     else if (email != string.Empty)
@@ -122,6 +124,7 @@ namespace LMSconsole.Controller
                             db.Readers.Attach(reader);
                             db.Entry(reader).Property(x => x.Email).IsModified = true;
                             db.SaveChanges();
+                            Console.WriteLine("You have successfully updated reader!");
                         }
                     }
                     else if (isStud != string.Empty)
@@ -134,8 +137,26 @@ namespace LMSconsole.Controller
                         db.Readers.Attach(reader);
                         db.Entry(reader).Property(x => x.IsStudent).IsModified = true;
                         db.SaveChanges();
+                        Console.WriteLine("You have successfully updated reader!");
                     }
                     else Console.WriteLine("There is nothing to update!");
+                }
+            }
+            catch
+            {
+                throw;
+            }
+        }
+        public void ReadersListID()
+        {
+            try
+            {
+                using (var db = new MyDbContext())
+                {
+                    foreach (var item in db.Readers.ToList())
+                    {
+                        Console.WriteLine($"{item.ReaderId} - {item.Name}");
+                    }
                 }
             }
             catch

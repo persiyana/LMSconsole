@@ -22,7 +22,36 @@ namespace LMSconsole.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("EntityFrameworkPlayground.Database.Entities.Author", b =>
+            modelBuilder.Entity("LMSconsole.Database.Entities.Activity", b =>
+                {
+                    b.Property<int>("ActivityId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ActivityId"), 1L, 1);
+
+                    b.Property<int>("BookId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTimeOffset>("GivenAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<int>("ReaderId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTimeOffset>("ReturnedAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.HasKey("ActivityId");
+
+                    b.HasIndex("BookId");
+
+                    b.HasIndex("ReaderId");
+
+                    b.ToTable("Activities");
+                });
+
+            modelBuilder.Entity("LMSconsole.Database.Entities.Author", b =>
                 {
                     b.Property<int>("AuthorId")
                         .ValueGeneratedOnAdd()
@@ -49,7 +78,7 @@ namespace LMSconsole.Migrations
                     b.ToTable("Authors");
                 });
 
-            modelBuilder.Entity("EntityFrameworkPlayground.Database.Entities.Book", b =>
+            modelBuilder.Entity("LMSconsole.Database.Entities.Book", b =>
                 {
                     b.Property<int>("BookId")
                         .ValueGeneratedOnAdd()
@@ -139,9 +168,28 @@ namespace LMSconsole.Migrations
                     b.ToTable("Readers");
                 });
 
-            modelBuilder.Entity("EntityFrameworkPlayground.Database.Entities.Book", b =>
+            modelBuilder.Entity("LMSconsole.Database.Entities.Activity", b =>
                 {
-                    b.HasOne("EntityFrameworkPlayground.Database.Entities.Author", "Author")
+                    b.HasOne("LMSconsole.Database.Entities.Book", "Book")
+                        .WithMany("Activities")
+                        .HasForeignKey("BookId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("LMSconsole.Database.Entities.Reader", "Reader")
+                        .WithMany("Activities")
+                        .HasForeignKey("ReaderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Book");
+
+                    b.Navigation("Reader");
+                });
+
+            modelBuilder.Entity("LMSconsole.Database.Entities.Book", b =>
+                {
+                    b.HasOne("LMSconsole.Database.Entities.Author", "Author")
                         .WithMany("Books")
                         .HasForeignKey("AuthorId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -150,9 +198,19 @@ namespace LMSconsole.Migrations
                     b.Navigation("Author");
                 });
 
-            modelBuilder.Entity("EntityFrameworkPlayground.Database.Entities.Author", b =>
+            modelBuilder.Entity("LMSconsole.Database.Entities.Author", b =>
                 {
                     b.Navigation("Books");
+                });
+
+            modelBuilder.Entity("LMSconsole.Database.Entities.Book", b =>
+                {
+                    b.Navigation("Activities");
+                });
+
+            modelBuilder.Entity("LMSconsole.Database.Entities.Reader", b =>
+                {
+                    b.Navigation("Activities");
                 });
 #pragma warning restore 612, 618
         }

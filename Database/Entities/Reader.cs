@@ -10,5 +10,7 @@ namespace LMSconsole.Database.Entities
         [Required] public string PhoneNumber { get; set; }
         public string Email { get; set; }
         [Required] public bool IsStudent { get; set; }
+
+        public virtual ICollection<Activity> Activities { get; set; }
     }
 }

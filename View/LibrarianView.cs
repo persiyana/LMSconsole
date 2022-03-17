@@ -1,5 +1,4 @@
 ﻿using LMSconsole.Controller;
-
 namespace LMSconsole.View
 {
     class LibrarianView
@@ -147,9 +146,8 @@ namespace LMSconsole.View
                 }
 
                 LibrarianController lc = new LibrarianController();
-
                 lc.UpdateLibrarian(uname, address, pNum, email, pass, passC);
-                Console.WriteLine("You have successfully updated librarian!");
+
                 MenuView menuView = new MenuView();
                 menuView.MenuActivities();
             }

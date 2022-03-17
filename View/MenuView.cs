@@ -29,13 +29,19 @@
                 "   aupdate - make author's 'is alive' from true to false",
                 "   badd - add new book",
                 "   bls - list of books",
+                "   abls - list of available books",
                 "   bremove - remove book",
+                "   bupdate - update book",
+                "   gb - give book",
+                "   rb - return book",
+                "   acls - list of activities",
                 "   END - end the program"
             };
             LibrarianView librarianView = new LibrarianView();
             AuthorView authorView = new AuthorView();
             ReaderView readerView = new ReaderView();
             BookView bookView = new BookView();
+            ActivityView activityView = new ActivityView();
             if (command != "END")
             {
                 switch (command)
@@ -86,8 +92,23 @@
                     case "bls":
                         bookView.BookList();
                         break;
+                    case "abls":
+                        bookView.IsAvailable();
+                        break;
                     case "bremove":
                         bookView.RemoveBook();
+                        break;
+                    case "bupdate":
+                        bookView.UpdateBook();
+                        break;
+                    case "gb":
+                        activityView.GivingBook();
+                        break;
+                    case "rb":
+                        activityView.ReturningBook();
+                        break;
+                    case "acls":
+                        activityView.ActivitiesList();
                         break;
                     default:
                         Console.WriteLine("Invalid command");

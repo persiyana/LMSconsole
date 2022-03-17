@@ -146,6 +146,7 @@ namespace LMSconsole.Controller
                         db.Librarians.Attach(librarian);
                         db.Entry(librarian).Property(x => x.Address).IsModified = true;
                         db.SaveChanges();
+                        Console.WriteLine("You have successfully updated librarian!");
                     }
                     else if (pNum != string.Empty)
                     {
@@ -160,6 +161,7 @@ namespace LMSconsole.Controller
                             db.Librarians.Attach(librarian);
                             db.Entry(librarian).Property(x => x.PhoneNumber).IsModified = true;
                             db.SaveChanges();
+                            Console.WriteLine("You have successfully updated librarian!");
                         }
                     }
                     else if (email != string.Empty)
@@ -175,6 +177,7 @@ namespace LMSconsole.Controller
                             db.Librarians.Attach(librarian);
                             db.Entry(librarian).Property(x => x.Email).IsModified = true;
                             db.SaveChanges();
+                            Console.WriteLine("You have successfully updated librarian!");
                         }
                     }
                     else if (pass != string.Empty)
@@ -190,6 +193,7 @@ namespace LMSconsole.Controller
                             db.Librarians.Attach(librarian);
                             db.Entry(librarian).Property(x => x.Password).IsModified = true;
                             db.SaveChanges();
+                            Console.WriteLine("You have successfully updated librarian!");
                         }
                     }
                     else Console.WriteLine("There is nothing to update!");

@@ -1,5 +1,5 @@
-﻿using EntityFrameworkPlayground.Database.Entities;
-using LMSconsole.Database;
+﻿using LMSconsole.Database;
+using LMSconsole.Database.Entities;
 using LMSconsole.Validator;
 
 namespace LMSconsole.Controller

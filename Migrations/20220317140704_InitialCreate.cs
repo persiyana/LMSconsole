@@ -79,6 +79,44 @@ namespace LMSconsole.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Activities",
+                columns: table => new
+                {
+                    ActivityId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    BookId = table.Column<int>(type: "int", nullable: false),
+                    ReaderId = table.Column<int>(type: "int", nullable: false),
+                    GivenAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    ReturnedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Activities", x => x.ActivityId);
+                    table.ForeignKey(
+                        name: "FK_Activities_Books_BookId",
+                        column: x => x.BookId,
+                        principalTable: "Books",
+                        principalColumn: "BookId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Activities_Readers_ReaderId",
+                        column: x => x.ReaderId,
+                        principalTable: "Readers",
+                        principalColumn: "ReaderId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Activities_BookId",
+                table: "Activities",
+                column: "BookId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Activities_ReaderId",
+                table: "Activities",
+                column: "ReaderId");
+
             migrationBuilder.CreateIndex(
                 name: "IX_Books_AuthorId",
                 table: "Books",
@@ -88,10 +126,13 @@ namespace LMSconsole.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Books");
+                name: "Activities");
 
             migrationBuilder.DropTable(
                 name: "Librarians");
+
+            migrationBuilder.DropTable(
+                name: "Books");
 
             migrationBuilder.DropTable(
                 name: "Readers");
