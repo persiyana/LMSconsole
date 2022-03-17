@@ -1,4 +1,7 @@
-﻿namespace LMSconsole.Database
+﻿using LMSconsole.Database.Entities;
+using Microsoft.EntityFrameworkCore;
+
+namespace LMSconsole.Database
 {
     public class MyDbContext : DbContext
     {

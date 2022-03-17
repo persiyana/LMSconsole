@@ -1,4 +1,6 @@
-﻿namespace LMSconsole.Database.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace LMSconsole.Database.Entities
 {
     public class Activity
     {
@@ -14,7 +16,7 @@
 
         public virtual Book Book { get; set; }
         public virtual Reader Reader { get; set; }
-        public virtual Book Book { get; set; }
+
 
     }
 }
