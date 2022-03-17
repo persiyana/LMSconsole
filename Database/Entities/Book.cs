@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace LMSconsole.Database.Entities
+﻿namespace LMSconsole.Database.Entities
 {
     public class Book
     {
