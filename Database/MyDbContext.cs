@@ -13,7 +13,7 @@ namespace LMSconsole.Database
         public virtual DbSet<Activity> Activities { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source=DESKTOP-64BBGMR;Database=LMSconsole;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer("Data Source=localhost;Database=LMSconsole;Trusted_Connection=True;");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
